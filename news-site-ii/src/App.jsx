@@ -1,13 +1,16 @@
 import { useState } from 'react'
 
-// import './App.css'
+import './App.css'
 
 import NavBar from './components/NavBar'
 import ArticleList from './components/ArticleList'
+import HomePage from './pages/HomePage'
+import ArticlePage from './pages/ArticlePage'
 
 import NewsData from '../data/news.json'
 import NavItemsData from '../data/navItems.json'
 
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 
 
 function App() {
@@ -23,11 +26,20 @@ function App() {
       created_date: article.created_date
     }})
     )
-  
+
+  const getArticleById = (articleId) =>{
+    return articles[articleId]
+  }
+
   return (
     <div className="App">
       <NavBar items={navItems} />
-      <ArticleList articles={articles}/>
+      <Router>
+        <Routes>
+          <Route path='/' element={<HomePage articles={articles}/>}/>
+          <Route path='/articles/:articleID' element={<ArticlePage getArticleById={getArticleById} />}/>
+        </Routes>
+      </Router>
     </div>
   )
 }

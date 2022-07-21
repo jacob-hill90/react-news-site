@@ -5,13 +5,14 @@ function ArticleList({articles}){
     
     const HandleTitleClick = (article_id) => {
         console.log(article_id)
+        
       }
 
     return(
         <div>
             {articles.map((article) => (
-                <ArticleTeaser {...article} clickFunction={HandleTitleClick} key={article.id}/>
-                // <ArticleGroup key={article.id} article={article}/>
+
+                <ArticleTeaser {...article} key={article.id}/>
                 ))
             }
         </div>
